@@ -19,6 +19,7 @@ var SEARCH_DATA = [
   { title: "ВЭД", desc: "SWIFT, конверсия, обмен валюты, ЕЭИСВО", url: "pages/ved.html", cat: "Продукты" },
   { title: "Контрагенты", desc: "Список контрагентов компании", url: "pages/counterparties.html", cat: "Контрагенты" },
   { title: "Заявки", desc: "Список заявок и их статусы", url: "pages/petitions.html", cat: "Заявки" },
+  { title: "Возможные проблемы и их решение", desc: "Ошибки системы, их причины и порядок устранения, troubleshooting, не работает, ошибка", url: "pages/troubleshooting.html", cat: "Справка" },
   { title: "FAQ", desc: "Часто задаваемые вопросы по системе", url: "pages/faq.html", cat: "Справка" }
   ];
 function initSearch() {
