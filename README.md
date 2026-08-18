@@ -6,7 +6,7 @@
 
 ## Структура проекта
 
-Файл index.html — это главная страница Help Center с поиском и карточками всех разделов. Папка assets/css содержит единую стилевую таблицу style.css (тема, layout, аннотации скриншотов, лайтбокс). Папка assets/js содержит main.js — логику поиска по документации, увеличения скриншотов по клику и подсветки активного пункта меню. Папка assets/images содержит скриншоты реального интерфейса с замаскированными персональными данными. Папка pages содержит отдельную HTML-статью для каждого раздела системы: login, dashboard, menu, profile, settings, users, notifications, payments, new-payment, drafts-templates, kartoteka, ept, accounts, credits, deposits, salary, cards, ved, counterparties, petitions, faq.
+Файл index.html — это главная страница Help Center с поиском и карточками всех разделов. Папка assets/css содержит единую стилевую таблицу style.css (тема, layout, аннотации скриншотов, лайтбокс). Папка assets/js содержит main.js — логику поиска по документации, увеличения скриншотов по клику и подсветки активного пункта меню. Папка assets/images содержит скриншоты реального интерфейса с замаскированными персональными данными. Папка pages содержит отдельную HTML-статью для каждого раздела системы: login, dashboard, menu, profile, settings, users, notifications, payments, new-payment, drafts-templates, kartoteka, ept, accounts, credits, deposits, salary, cards, ved, counterparties, petitions, troubleshooting (возможные проблемы и их решение), faq.
 
 ## Технологии
 
