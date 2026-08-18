@@ -20,8 +20,22 @@ var SEARCH_DATA = [
   { title: "Контрагенты", desc: "Список контрагентов компании", url: "pages/counterparties.html", cat: "Контрагенты" },
   { title: "Заявки", desc: "Список заявок и их статусы", url: "pages/petitions.html", cat: "Заявки" },
   { title: "Возможные проблемы и их решение", desc: "Ошибки системы, их причины и порядок устранения, troubleshooting, не работает, ошибка", url: "pages/troubleshooting.html", cat: "Справка" },
-  { title: "FAQ", desc: "Часто задаваемые вопросы по системе", url: "pages/faq.html", cat: "Справка" }
+  { title: "FAQ", desc: "Часто задаваемые вопросы по системе", url: "pages/faq.html", cat: "Справка" },
+  { title: "Request expired — не удалось создать платеж", desc: "Время на компьютере не синхронизировано. Дата и время, часовой пояс, Windows, платеж не создается", url: "pages/troubleshooting.html#pay-request-expired", cat: "Возможные проблемы" },
+  { title: "Не удалось отправить уведомление. Попробуйте позже", desc: "Лимит SMS при входе в систему, код не приходит, подождите 5 минут, авторизация", url: "pages/troubleshooting.html#auth-sms-limit", cat: "Возможные проблемы" },
+  { title: "Нет данных по счёту казначейства", desc: "Платеж в казначейство, не подтягивается наименование получателя, справочник счетов, Нет данных", url: "pages/troubleshooting.html#pay-treasury", cat: "Возможные проблемы" },
+  { title: "Недостаточно прав для совершения действия", desc: "Права доступа, роли пользователей, директор, Настройки Пользователи, черновики, нет доступа", url: "pages/troubleshooting.html#other-no-rights", cat: "Возможные проблемы" },
+  { title: "Необходимо привязать номер мобильного телефона (ОТР)", desc: "ОТР, OTP, СМС код, привязка номера, ЭЦП фирмы, подписание документа, Настройки Пользователи Подключить", url: "pages/troubleshooting.html#ecp-phone", cat: "Возможные проблемы" },
+  { title: "Такое значение поля external id уже существует", desc: "Не удалось отправить документ в банк, external_id, 422, HTTP_UNPROCESSABLE_ENTITY, дубликат, ведомость, зарплата", url: "pages/troubleshooting.html#pay-external-id", cat: "Возможные проблемы" },
+  { title: "Неизвестная ошибка — Network Error", desc: "Network Error, сетевая ошибка, страница не загружается, SECURITY_TITLE, SECURITY_INTRO, точка доступа, VPN, прокси, интернет", url: "pages/troubleshooting.html#tech-network-error", cat: "Возможные проблемы" }
   ];
+function score(item, q) {
+  var t = item.title.toLowerCase();
+  if (t.indexOf(q) === 0) return 3;
+  if (t.indexOf(q) !== -1) return 2;
+  if (item.desc.toLowerCase().indexOf(q) !== -1) return 1;
+  return 0;
+}
 function initSearch() {
   var inputs = document.querySelectorAll(".site-search-input");
   inputs.forEach(function (input) {
@@ -33,6 +47,8 @@ function initSearch() {
       if (!q) { results.style.display = "none"; results.innerHTML = ""; return; }
       var matches = SEARCH_DATA.filter(function (item) {
         return (item.title + " " + item.desc + " " + item.cat).toLowerCase().indexOf(q) !== -1;
+      }).sort(function (a, b) {
+        return score(b, q) - score(a, q);
       });
       if (matches.length === 0) {
         results.innerHTML = "<div style=\"padding:14px 16px;color:#667085;font-size:14px\">Ничего не найдено</div>";
