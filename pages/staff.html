@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Для сотрудников банка — Trustbank DBO Help Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-depth="1">
+<div class="topbar">
+<a class="brand" href="../index.html">Trustbank DBO — Help Center</a>
+<div class="spacer"></div>
+<div class="search-box">
+<span>Поиск</span>
+<input class="site-search-input" placeholder="Поиск по документации...">
+<div class="search-results-panel" style="position:absolute;right:24px;top:58px;width:360px;max-height:420px;overflow:auto;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(15,35,65,.08);display:none;z-index:60;border:1px solid #e3e8f0;"></div>
+</div>
+</div>
+<div class="layout">
+<aside class="sidebar">
+<h4>Начало работы</h4>
+<a href="login.html">Авторизация</a>
+<a href="menu.html">Меню и навигация</a>
+<h4>Главная</h4>
+<a href="dashboard.html">Главная страница</a>
+<h4>Профиль и настройки</h4>
+<a href="profile.html">Профиль пользователя</a>
+<a href="settings.html">Настройки компании</a>
+<a href="users.html">Пользователи и роли</a>
+<a href="notifications.html">Центр уведомлений</a>
+<h4>Банк</h4>
+<a href="payments.html">Платежи</a>
+<a href="new-payment.html">Новый платеж</a>
+<a href="drafts-templates.html">Черновики и шаблоны</a>
+<a href="kartoteka.html">Картотека 1 и 2</a>
+<a href="ept.html">Платежные требования</a>
+<a href="accounts.html">Все счета</a>
+<h4>Продукты</h4>
+<a href="credits.html">Кредиты</a>
+<a href="deposits.html">Депозиты</a>
+<a href="salary.html">Зарплата</a>
+<a href="cards.html">Корпоративные карты</a>
+<a href="ved.html">ВЭД</a>
+<h4>Контрагенты и заявки</h4>
+<a href="counterparties.html">Контрагенты</a>
+<a href="petitions.html">Заявки</a>
+<h4>Справка</h4>
+<a href="troubleshooting.html">Возможные проблемы</a>
+<a href="faq.html">FAQ</a>
+<h4>Служебное</h4>
+<a href="staff.html" class="active">Для сотрудников банка</a>
+</aside>
+<main class="content">
+<div class="breadcrumbs"><a href="../index.html">Главная</a> / Служебное / Для сотрудников банка</div>
+<article class="doc">
+
+<div id="gate">
+<div class="lock-card">
+<div class="lock-icon">🔒</div>
+<h1>Для сотрудников банка</h1>
+<p class="subtitle">Раздел закрыт паролем. Содержимое хранится в зашифрованном виде и расшифровывается прямо в браузере.</p>
+<div class="lock-form">
+<input type="password" id="pw" placeholder="Введите пароль доступа" autocomplete="off">
+<button id="unlock">Открыть раздел</button>
+</div>
+<div class="lock-msg" id="msg"></div>
+<p class="lock-hint">Пароль выдаётся ответственным сотрудником банка. Не передавайте его клиентам и не сохраняйте в общедоступных файлах.</p>
+</div>
+</div>
+
+<div id="secret" hidden>
+<h1>Для сотрудников банка</h1>
+<p class="subtitle">Внутренние инструкции по сопровождению клиентов системы ДБО. Материал не предназначен для передачи клиентам.</p>
+<div class="callout warn"><b>Служебная информация</b>Раздел содержит внутренние регламенты банка. Не публикуйте его содержимое и не пересылайте за пределы банка.</div>
+<div id="secret-body"></div>
+<div class="pager">
+<a href="faq.html">← FAQ</a>
+<a href="../index.html">На главную →</a>
+</div>
+</div>
+
+</article>
+</main>
+</div>
+<footer class="site-footer">Trustbank Business DBO — Help Center · Учебная документация по интерфейсу системы</footer>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  var pw = document.getElementById('pw');
+  var btn = document.getElementById('unlock');
+  var msg = document.getElementById('msg');
+
+  function say(text, kind) {
+    msg.textContent = text;
+    msg.className = 'lock-msg' + (kind ? ' ' + kind : '');
+  }
+
+  function bytes(b64s) {
+    var bin = atob(b64s), arr = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return arr;
+  }
+
+  async function unlock() {
+    var pass = pw.value;
+    if (!pass) { say('Введите пароль.', 'err'); return; }
+    if (!window.crypto || !crypto.subtle) {
+      say('Расшифровка недоступна: откройте сайт по https или через локальный веб-сервер, а не как файл с диска.', 'err');
+      return;
+    }
+    btn.disabled = true; say('Проверка пароля...');
+    try {
+      var res = await fetch('../assets/data/staff.enc', { cache: 'no-store' });
+      if (!res.ok) throw new Error('нет файла с данными раздела');
+      var data = await res.json();
+
+      var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+      var key = await crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: bytes(data.salt), iterations: data.iter, hash: 'SHA-256' },
+        base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      var plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: bytes(data.iv) }, key, bytes(data.ct));
+
+      document.getElementById('secret-body').innerHTML = new TextDecoder().decode(plain);
+      document.getElementById('gate').hidden = true;
+      document.getElementById('secret').hidden = false;
+      pw.value = '';
+    } catch (e) {
+      if (e && e.message && e.message.indexOf('нет файла') !== -1) say('Не удалось загрузить данные раздела: ' + e.message, 'err');
+      else say('Неверный пароль.', 'err');
+      btn.disabled = false;
+    }
+  }
+
+  btn.addEventListener('click', unlock);
+  pw.addEventListener('keydown', function (e) { if (e.key === 'Enter') unlock(); });
+})();
+</script>
+</body>
+</html>

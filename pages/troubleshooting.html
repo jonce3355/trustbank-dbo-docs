@@ -47,6 +47,8 @@
 <h4>Справка</h4>
 <a href="troubleshooting.html" class="active">Возможные проблемы</a>
 <a href="faq.html">FAQ</a>
+<h4>Служебное</h4>
+<a href="staff.html">Для сотрудников банка</a>
 </aside>
 <main class="content">
 <div class="breadcrumbs"><a href="../index.html">Главная</a> / Справка / Возможные проблемы и их решение</div>
@@ -121,7 +123,7 @@
 <div class="where">Где возникает: раздел «Банк» → «Новый платеж», при сохранении или создании платежа</div>
 <div class="err-text">Request expired
 Не удалось создать платеж</div>
-<div class="shot-wrap"><img src="../assets/images/errors/request-expired.png" alt="Ошибка Request expired при создании платежа"></div>
+<div class="shot-wrap"><img src="../assets/images/errors/request-expired.jpg" alt="Ошибка Request expired при создании платежа"></div>
 <div class="label">Причина</div>
 <p class="cause">Время на компьютере пользователя не совпадает с фактическим временем сервера банка. Система считает запрос устаревшим и отклоняет его ещё до отправки документа в банк.</p>
 <div class="label">Решение</div>
@@ -139,7 +141,7 @@
 <h3>Не подтягиваются данные счёта казначейства — «Нет данных» <span class="tag bank">Нужна поддержка банка</span></h3>
 <div class="where">Где возникает: «Новый платеж» → «Платеж в казначейство», поле «Счет казначейства»</div>
 <div class="err-text">Нет данных</div>
-<div class="shot-wrap"><img src="../assets/images/errors/treasury-no-data.png" alt="Поле счёта казначейства показывает Нет данных"></div>
+<div class="shot-wrap"><img src="../assets/images/errors/treasury-no-data.jpg" alt="Поле счёта казначейства показывает Нет данных"></div>
 <div class="label">Причина</div>
 <p class="cause">Справочник казначейских счетов не возвращает данные по введённому номеру: счёт отсутствует в справочнике системы либо справочник временно недоступен. Поле «Наименование» получателя при этом остаётся пустым, и платёж заполнить до конца невозможно.</p>
 <div class="label">Решение</div>
@@ -157,7 +159,7 @@
 <div class="where">Где возникает: отправка документа в банк — ведомость в разделе «Зарплата», а также повторная отправка платежа</div>
 <div class="err-text">Не удалось отправить документ в банк
 API 'Bank': Такое значение поля external id уже существует. {status: 422; code: 'HTTP_UNPROCESSABLE_ENTITY'; msg: '{"external_id": ["Такое значение поля external id уже существует."]}'}</div>
-<div class="shot-wrap"><img src="../assets/images/errors/external-id.png" alt="Ошибка external id при отправке ведомости в банк"></div>
+<div class="shot-wrap"><img src="../assets/images/errors/external-id.jpg" alt="Ошибка external id при отправке ведомости в банк"></div>
 <div class="label">Причина</div>
 <p class="cause">Документ с таким внутренним идентификатором уже зарегистрирован на стороне банка. Обычно это происходит при повторной отправке одного и того же документа или при редактировании и переотправке ранее отправленного — банк не принимает дубликат.</p>
 <div class="label">Решение</div>

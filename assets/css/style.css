@@ -172,3 +172,26 @@ table.doc-table th { background: #eef2f8; }
 .tag.user { background:#eaf2ff; color:#14509b; }
 .tag.bank { background:#fdeaea; color:#a12727; }
 .tag.tech { background:#f0eafd; color:#5b2fa1; }
+
+/* ===== Закрытый раздел для сотрудников ===== */
+.lock-card {
+  background: var(--card); border:1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 40px; max-width: 560px; margin: 40px auto; text-align:center;
+}
+.lock-card .lock-icon { font-size: 40px; margin-bottom: 10px; }
+.lock-card h1 { font-size: 24px; margin: 0 0 6px; }
+.lock-card .subtitle { margin-bottom: 26px; }
+.lock-form { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.lock-form input {
+  flex:1; min-width: 220px; border:1px solid var(--border); border-radius:10px;
+  padding: 12px 14px; font-size: 15px; font-family: inherit;
+}
+.lock-form input:focus { outline:0; border-color: var(--accent); }
+.lock-form button {
+  background: var(--accent); color:#fff; border:0; border-radius:10px;
+  padding: 12px 24px; font-size:15px; font-weight:600; cursor:pointer;
+}
+.lock-form button:disabled { background:#9db8e6; cursor:default; }
+.lock-msg { min-height: 22px; margin-top: 14px; font-size: 14px; color: var(--muted); }
+.lock-msg.err { color: #c0392b; }
+.lock-hint { color: var(--muted); font-size: 13px; margin-top: 20px; margin-bottom:0; }

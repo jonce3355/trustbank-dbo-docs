@@ -21,6 +21,7 @@ var SEARCH_DATA = [
   { title: "Заявки", desc: "Список заявок и их статусы", url: "pages/petitions.html", cat: "Заявки" },
   { title: "Возможные проблемы и их решение", desc: "Ошибки системы, их причины и порядок устранения, troubleshooting, не работает, ошибка", url: "pages/troubleshooting.html", cat: "Справка" },
   { title: "FAQ", desc: "Часто задаваемые вопросы по системе", url: "pages/faq.html", cat: "Справка" },
+  { title: "Для сотрудников банка", desc: "Служебный раздел, закрыт паролем", url: "pages/staff.html", cat: "Служебное" },
   { title: "Request expired — не удалось создать платеж", desc: "Время на компьютере не синхронизировано. Дата и время, часовой пояс, Windows, платеж не создается", url: "pages/troubleshooting.html#pay-request-expired", cat: "Возможные проблемы" },
   { title: "Не удалось отправить уведомление. Попробуйте позже", desc: "Лимит SMS при входе в систему, код не приходит, подождите 5 минут, авторизация", url: "pages/troubleshooting.html#auth-sms-limit", cat: "Возможные проблемы" },
   { title: "Нет данных по счёту казначейства", desc: "Платеж в казначейство, не подтягивается наименование получателя, справочник счетов, Нет данных", url: "pages/troubleshooting.html#pay-treasury", cat: "Возможные проблемы" },
