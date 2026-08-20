@@ -119,6 +119,11 @@ article.doc .subtitle { color: var(--muted); margin-bottom: 24px; }
 .pager a { border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; background: var(--card); color: var(--text); font-size: 14px; }
 .pager a:hover { border-color: var(--accent); text-decoration:none; }
 footer.site-footer { text-align:center; color: var(--muted); font-size: 13px; padding: 30px; }
+.footer-support { display:flex; justify-content:center; align-items:center; gap:28px; flex-wrap:wrap; margin-bottom:14px; }
+.footer-support a { display:inline-flex; align-items:center; gap:6px; color: var(--text); font-size: 14px; font-weight:500; }
+.footer-support a:hover { color: var(--accent); text-decoration:none; }
+.footer-support .sep { color: var(--border); }
+.footer-text { color: var(--muted); }
 .lightbox {
   position: fixed; inset: 0; background: rgba(6,15,30,.88); display: none; align-items: center; justify-content: center; z-index: 100; padding: 40px; cursor: zoom-out;
 }
